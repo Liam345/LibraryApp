@@ -1,23 +1,13 @@
 {
   "development": {
-    "username": "demo",
-    "password": "password",
-    "database": "librarydb",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "use_env_variable": "DATABASE_URL"
   },
   "test": {
-    "username": "demo",
-    "password": "password",
-    "database": "librarydb",
+    "username": "waiyaki",
+    "password": null,
+    "database": "todos-test",
     "host": "127.0.0.1",
-    "dialect": "postgres"
-  },
-  "production": {
-    "username": "demo",
-    "password": "password",
-    "database": "librarydb",
-    "host": "127.0.0.1",
+    "port": 5432,
     "dialect": "postgres"
   }
 }
