@@ -3,11 +3,15 @@
     "use_env_variable": "DATABASE_URL"
   },
   "test": {
-    "username": "waiyaki",
+    "username": "demo",
     "password": null,
-    "database": "todos-test",
+    "database": "book-test",
     "host": "127.0.0.1",
     "port": 5432,
     "dialect": "postgres"
-  }
+  },
+  
+    "production": {
+      "use_env_variable": "DATABASE_URL"
+    }
 }
