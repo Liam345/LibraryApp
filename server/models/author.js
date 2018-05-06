@@ -1,25 +1,27 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Book = sequelize.define('Book', {
+  var Author = sequelize.define('Author', {
     id: {
       allowNull: false,
       primaryKey: true,
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4
     },
-    title: {
+    firstname: {
+      type:DataTypes.STRING,
+    },
+    lastname: {
       type:DataTypes.STRING,
       allowNull: false,
     },
-    }, {});
-
-  Book.associate = (models) => {
-    Book.belongsToMany(models.Author,{
+  }, {});
+  Author.associate = function(models) {
+    Author.belongsToMany(models.Book,{
       through:'BookAuthor',
-      as:'authors',
-      foreignKey:'bookId',
+      as:'books',
+      foreignKey:'authorId',
       onDelete:'SET NULL'
     })
   };
-  return Book;
+  return Author;
 };

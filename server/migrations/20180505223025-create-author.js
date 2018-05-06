@@ -1,14 +1,17 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Books', {
+    return queryInterface.createTable('Authors', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      title: {
+      firstname: {
+        type: Sequelize.STRING
+      },
+      lastname: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -23,6 +26,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Books');
+    return queryInterface.dropTable('Authors');
   }
 };
