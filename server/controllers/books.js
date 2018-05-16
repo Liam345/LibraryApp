@@ -5,7 +5,8 @@ module.exports = {
         return Book
         .create({
             title:req.body.title,
-            author:req.body.author
+            author:req.body.author,
+            email:req.body.email
         })
         .then(book => res.status(201).send(book))
         .catch(error => res.status(400).send(error));
@@ -28,7 +29,8 @@ module.exports = {
             return book
               .update({
                 title: req.body.title || book.title,
-                author:req.body.author || author.title,
+                author:req.body.author || book.author,
+                email:req.body.email || book.email
               })
               .then(() => res.status(200).send(book))  
               .catch((error) => res.status(400).send(error));
