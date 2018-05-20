@@ -53,4 +53,40 @@ module.exports = {
           })
           .catch(error => res.status(400).send(error));
       },
+
+      contact(req, res){
+        return Book
+        .findById(req.params.bookId)
+        .then(book => {
+          if (!book){
+            return res.status(400).send({
+              message: 'Book not found',
+            }); 
+          }
+          if (book.email === null){
+            return res.status(400).send({
+              message: 'Email not found'
+            });
+          }
+       // })
+          return book
+          .update({})
+          .then((book) => {
+            const sgMail = require('@sendgrid/mail');
+            sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+            const msg = {
+              to:book.email,
+              from: 'vinall.banga@gmail.com',
+              subject: 'General subject line',
+              //text: 'No no',
+              //html: req.body.content
+              html:'General contentsent to the author'
+            };
+            sgMail.send(msg);
+            res.status(200).send(`${req.body.content} content found ready to send`)
+          })  
+          //look at sendgrid docs ot catch unsuccessful email errors
+          .catch((error) => res.status(400).send(error));
+        })
+      }
 }
