@@ -68,7 +68,6 @@ module.exports = {
               message: 'Email not found'
             });
           }
-       // })
           return book
           .update({})
           .then((book) => {
@@ -77,15 +76,16 @@ module.exports = {
             const msg = {
               to:book.email,
               from: 'vinall.banga@gmail.com',
-              subject: 'General subject line',
-              //text: 'No no',
-              //html: req.body.content
-              html:'General contentsent to the author'
+              subject: req.body.subject,
+              //text: 'General content sent to the author Yo Yo',
+              html:req.body.content
             };
-            sgMail.send(msg);
-            res.status(200).send(`${req.body.content} content found ready to send`)
+            sgMail.send(msg)
+            .then(()=>res.status(200).send(`Sent email to ${book.email}. Celebrate! `))
+            .catch(error => {
+              res.status(400).send(error);
+            })
           })  
-          //look at sendgrid docs ot catch unsuccessful email errors
           .catch((error) => res.status(400).send(error));
         })
       }
