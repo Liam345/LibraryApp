@@ -1,6 +1,7 @@
 {
   "development": {
-    "use_env_variable": "DATABASE_URL"
+    "use_env_variable": "DATABASE_URL",
+    "operatorsAliases": false
   },
   "test": {
     "username": "demo",
@@ -8,10 +9,12 @@
     "database": "book-test",
     "host": "127.0.0.1",
     "port": 5432,
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "operatorsAliases": false
   },
   
     "production": {
-      "use_env_variable": "DATABASE_URL"
+      "use_env_variable": "DATABASE_URL",
+      "operatorsAliases": false
     }
 }
