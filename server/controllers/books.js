@@ -6,7 +6,8 @@ module.exports = {
         .create({
             title:req.body.title,
             author:req.body.author,
-            email:req.body.email
+            email:req.body.email,
+            price:req.body.price
         })
         .then(book => res.status(201).send(book))
         .catch(error => res.status(400).send(error));
@@ -30,7 +31,8 @@ module.exports = {
               .update({
                 title: req.body.title || book.title,
                 author:req.body.author || book.author,
-                email:req.body.email || book.email
+                email:req.body.email || book.email,
+                price:req.body.price||book.price
               })
               .then(() => res.status(200).send(book))  
               .catch((error) => res.status(400).send(error));
