@@ -26,7 +26,9 @@ app.use(passport.initialize());
 
 //load Passport strategies
 const localSignupStrategy = require('./server/config/passport/local-signup');
+const localLoginStrategy = require('./server/config/passport/local-login');
 passport.use('local-signup', localSignupStrategy);
+passport.use('local-login',localLoginStrategy);
 //require('./server/config/passport/passport.js')(passport,models.User);
 
 // Serve static files from the React app
