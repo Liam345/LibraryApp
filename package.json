@@ -27,6 +27,8 @@
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.37.6",
+    "stripe": "^6.7.0",
+    "superagent": "^3.8.3",
     "validator": "^10.4.0"
   },
   "devDependencies": {

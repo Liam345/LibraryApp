@@ -1,7 +1,9 @@
 const booksController = require('../controllers').books;
 const usersController = require('../controllers').users;
+const paymentsController = require('../controllers').payments;
 const express = require('express');
 const router = new express.Router();
+// const stripe = require("stripe")("sk_test_cgvaFNrYRqq4sZIujbwWOJdB");
 
 //module.exports = (app,passport) => {
     router.get('/',(req,res) => res.status(200).send({
@@ -33,14 +35,8 @@ const router = new express.Router();
     router.get('/users',usersController.list);
     router.delete('/users/:userId',usersController.destroy);
 
+    router.post('/charge',paymentsController.create);
+
     module.exports = router;
 
-    // router.post('/api/login',passport.authenticate('local-signin',
-    // function(req,res){
-    //     if(!req.user){
-    //         res.status(200).send({message:'Email is incorrect'})
-    //     }
-    //     else {
-    //         res.status(200).send({message:'User is signed in'})
-    //     }
-    // }));
+    
