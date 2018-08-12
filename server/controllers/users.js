@@ -1,4 +1,5 @@
 const User = require('../models').User;
+const Address = require('../models').Address;
 
 module.exports = {
     create(req,res){
@@ -14,8 +15,31 @@ module.exports = {
     },
     list(req,res){
         return User
-        .all()
+        .findAll({
+            include:[{
+                model:Address,
+                as:'addresses'
+            }]
+        })
         .then(users => res.status(200).send(users))
+        .catch(error => res.status(400).send(error));
+    },
+    retrieve(req,res){
+        return User
+        .findById(req.params.userId, {
+            include:[{
+                model:Address,
+                as:'addresses'
+            }],
+        })
+        .then(user => {
+            if(!user){
+                return res.status(404).send({
+                    message: 'User Not Found',
+            })
+        }
+        return res.status(200).send(user);
+        })
         .catch(error => res.status(400).send(error));
     },
     destroy(req, res) {

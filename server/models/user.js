@@ -23,7 +23,12 @@ module.exports = (sequelize, DataTypes) => {
     }, {});
 
     User.associate = function(models) {
-    // associations can be defined here
+      User.hasMany(models.Address,{
+        foreignKey:'userId',
+        as:'addresses'
+      })
+      //when querying for user address's we can query by addresses
+      //instead of Sequelize default i.e.Addresses
   };
 
   

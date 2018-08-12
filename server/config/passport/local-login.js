@@ -13,7 +13,7 @@ module.exports = new PassportLocalStrategy({
     passReqToCallback:true
 }, (req,email,password,done)=> {
     const userData = {
-        email:email.trim(),
+        email:email.trim().toLowerCase(),
         password:password.trim()
     };
     console.log("abc");
@@ -78,6 +78,7 @@ module.exports = new PassportLocalStrategy({
             // create a token string
             const token = jwt.sign(payload, process.env.JWT_SECRET);
             const data = {
+                id:user.id,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.email

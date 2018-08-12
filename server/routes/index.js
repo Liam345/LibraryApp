@@ -1,6 +1,8 @@
 const booksController = require('../controllers').books;
 const usersController = require('../controllers').users;
 const paymentsController = require('../controllers').payments;
+const addressesController = require('../controllers').addresses;
+
 const express = require('express');
 const router = new express.Router();
 // const stripe = require("stripe")("sk_test_cgvaFNrYRqq4sZIujbwWOJdB");
@@ -33,9 +35,14 @@ const router = new express.Router();
     // }));
     router.post('/users',usersController.create);
     router.get('/users',usersController.list);
+    router.get('/users/:userId',usersController.retrieve);
     router.delete('/users/:userId',usersController.destroy);
 
     router.post('/charge',paymentsController.create);
+
+    router.post('/address/:userId',addressesController.create);
+    router.get('/address/',addressesController.list);
+    router.delete('/address/:addressId/:userId',addressesController.destroy);
 
     module.exports = router;
 

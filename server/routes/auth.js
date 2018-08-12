@@ -95,7 +95,6 @@ router.post('/login',(req,res,next)=> {
     //         errors:'success'
     //     })
     // }
-    console.log('test123');
     return passport.authenticate('local-login',(err,token,userData)=>{
         if(err){
             if(err.name === 'IncorrectCredentialsError'){
