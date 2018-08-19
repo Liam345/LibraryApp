@@ -36,9 +36,14 @@ const router = new express.Router();
     router.post('/users',usersController.create);
     router.get('/users',usersController.list);
     router.get('/users/:userId',usersController.retrieve);
+    router.put('/users/:userId',usersController.update);
     router.delete('/users/:userId',usersController.destroy);
 
+
+    router.post('/customer',paymentsController.createOrRetrieveCustomer);
     router.post('/charge',paymentsController.create);
+    router.get('/charge',paymentsController.list);
+    router.get('/charge/customers',paymentsController.listCustomers);
 
     router.post('/address/:userId',addressesController.create);
     router.get('/address/',addressesController.list);
