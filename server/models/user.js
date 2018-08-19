@@ -19,6 +19,11 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type:DataTypes.STRING,
       allowNull: false,
+    },
+    stripeCustomerId:{
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique:true
     }
     }, {});
 
