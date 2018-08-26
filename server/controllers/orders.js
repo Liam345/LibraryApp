@@ -1,58 +1,60 @@
-const Address = require('../models').Address;
+const Order = require('../models').Order;
+
+
 
 module.exports = {
   create(req, res) {
-    return Address
+    return Order
       .create({
-        addressLine: req.body.addressLine,
-        city:req.body.city,
-        state:req.body.state,
-        zip:req.body.zip,
-        country:req.body.country,
-        userId:req.params.userId
+        userId:req.params.userId,
+        bookQuantity:req.body.bookQuantity,
+        totalAmount:req.body.totalAmount,
+        status:req.body.status,
+        addressId:req.body.addressId,
+        chargeId:req.body.chargeId
       })
-      .then(address => res.status(201).send(address))
+      .then(orders => res.status(201).send(orders))
       .catch(error => res.status(400).send(error));
   },
   retrieve(req,res){
-    return Address
+    return Order
     .findAll({
         where:{
             //id:req.params.addressId,
             userId:req.params.userId
         },
     })
-    .then(address => {
-        if(!address){
+    .then(orders => {
+        if(!orders){
             return res.status(404).send({
-                message: 'Address Not Found',
+                message: 'Order Not Found',
         })
     }
-    return res.status(200).send(address);
+    return res.status(200).send(orders);
     })
     .catch(error => res.status(400).send(error)); 
   },
   list(req,res){
-    return Address
+    return Order
     .all()
-    .then(address => res.status(200).send(address))
+    .then(orders => res.status(200).send(orders))
     .catch(error => res.status(400).send(error));
 },
 destroy(req,res){
-    return Address
+    return Order
     .find({
         where:{
-            id:req.params.addressId,
+            id:req.params.orderId,
             userId:req.params.userId
         },
     })
-    .then(address => {
-        if(!address){
+    .then(orders => {
+        if(!orders){
             return res.status(404).send({
-                message:'Address not found',
+                message:'Order not found',
             });
         }
-        return address
+        return orders
         .destroy()
         .then(()=> res.status(204).send())
         .catch(error => res.status(400).send(error));

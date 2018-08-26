@@ -2,6 +2,7 @@ const booksController = require('../controllers').books;
 const usersController = require('../controllers').users;
 const paymentsController = require('../controllers').payments;
 const addressesController = require('../controllers').addresses;
+const ordersController = require('../controllers').orders;
 
 const express = require('express');
 const router = new express.Router();
@@ -46,8 +47,14 @@ const router = new express.Router();
     router.get('/charge/customers',paymentsController.listCustomers);
 
     router.post('/address/:userId',addressesController.create);
+    router.get('/address/:userId',addressesController.retrieve);
     router.get('/address/',addressesController.list);
     router.delete('/address/:addressId/:userId',addressesController.destroy);
+
+    router.post('/order/:userId',ordersController.create);
+    router.get('/order/:userId',ordersController.retrieve);
+    router.get('/order',ordersController.list);
+    router.delete('/order/:orderId/:userId',ordersController.destroy);
 
     module.exports = router;
 

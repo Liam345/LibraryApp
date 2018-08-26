@@ -34,6 +34,10 @@ module.exports = (sequelize, DataTypes) => {
       })
       //when querying for user address's we can query by addresses
       //instead of Sequelize default i.e.Addresses
+      User.hasMany(models.Order,{
+        foreignKey:'userId',
+        as:'orders'
+      })
   };
 
   
