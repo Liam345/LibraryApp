@@ -74,16 +74,21 @@ module.exports = {
           .update({})
           .then((book) => {
             const sgMail = require('@sendgrid/mail');
-            sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+            sgMail.setApiKey(process.env.SG_API_KEY);
             const msg = {
               to:book.email,
-              from: 'vinall.banga@gmail.com',
+              from: 'liam205@outlook.com.com',
               subject: req.body.subject,
               //text: 'General content sent to the author Yo Yo',
               html:req.body.content
             };
             sgMail.send(msg)
-            .then(()=>res.status(200).send(`Sent email to ${book.email}. Celebrate! `))
+            .then((response)=>{
+
+              //console.log(response.status);
+              res.status(200).send(`Sent email to ${book.email}. Celebrate! `)
+              
+            })
             .catch(error => {
               res.status(400).send(error);
             })
