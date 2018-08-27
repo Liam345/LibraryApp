@@ -27,7 +27,7 @@ const router = new express.Router();
 
 
     router.post('/customer',paymentsController.createOrRetrieveCustomer);
-    router.post('/charge',paymentsController.create);
+    router.put('/charge',paymentsController.create);
     router.get('/charge',paymentsController.list);
     router.get('/charge/customers',paymentsController.listCustomers);
 

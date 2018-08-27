@@ -32,6 +32,8 @@ module.exports = {
             amount:req.body.amount,
             currency:'aud',
             customer:req.body.customerStripeId
+        },{
+            idempotency_key:req.body.idemKey
         });
         return res.status(200).send(charge);
        
